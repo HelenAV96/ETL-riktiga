@@ -1,0 +1,7 @@
+18/1 0900
+Project start.
+
+Open Meteo is selected as the API to use. OM is selected due to the simplicity and open source nature, as well as it being free. Other sources were considered, but it was decided
+to keep away from the recommended API's as we feared that they would be flooded with requests by the other teams.
+
+
