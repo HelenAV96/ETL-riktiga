@@ -7,5 +7,58 @@ to keep away from the recommended API's as we feared that they would be flooded 
 
 1130
 
-API get and save to json is working, currently hard coded with one location and hourly measurements for temp/wind/precip. The json is overwritten each time it is run.
+API get and save to json is working, currently hard coded with one location and hourly measurements
+for temp/wind/precip. The json is overwritten each time it is run.
+
+Functionality:
+
+
+		ETLETLETLETLELTELTELTETLETLETETETLETLETLETLETETLETL
+
+
+The data is collected using etl_meteo.py. The script contains a list of arbitrary location
+coordinates for which weather data is collected. 
+
+Using the function "request_new_weather_data" accopmplishes the following:
+
+	- The destination folder, "source_to_raw", is cleansed from any earlier data.
+
+	- Using a for-loop, each location in the list of locations gets input into a 
+	querystring together with the selected parameters. The parametes are har coded and 
+	are currently hourly data over the next 4 days for temperature, relative humidity
+	and precipitation.
+
+	- Using the querystring, data is pulled from OM.
+
+	- Using datetime and the location coordinates, the file is saved (json) and named as
+	the time of request as well as the location of the forecast.
+
+The above is true for each of the locations, and they will be saved as separate files.
+
+Using the function "transform", accomplishes the following:
+
+	- The destination folder, "raw_to_harmonized", is cleansed from any previous data.
+
+	- As the raw data contains unnecessary information which not only wastes space, but
+ 	also makes any attempt at usage of the data extremely difficult, it is transformed.
+
+	- The function pulls files from "source_to_raw", makes a dataframe out of the part
+	¨that is needed (['hourly']).
+
+	- The data is then saved to the destination folder as a json.
+
+Using the function "rename", accomplishes the following:
+
+	-Each file inte the directory, "raw_to_harmonized" is looped through and checked if
+ 	the file name ends with a certain set of coordnates, and depending on which
+ 	coordinates, it is renamed after the actual town or city corresponding to the
+ 	coordinates.
+ 
+	-Note that all of this is hard coded and would need changing if the list of
+ 	locations should be updated.
+
+		DDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+
+The python script handling the database insertion is called simons_databasgrej.py
+
 
