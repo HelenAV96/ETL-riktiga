@@ -5,3 +5,7 @@ Open Meteo is selected as the API to use. OM is selected due to the simplicity a
 to keep away from the recommended API's as we feared that they would be flooded with requests by the other teams.
 
 
+1130
+
+API get and save to json is working, currently hard coded with one location and hourly measurements for temp/wind/precip. The json is overwritten each time it is run.
+
