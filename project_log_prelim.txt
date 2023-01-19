@@ -59,6 +59,26 @@ Using the function "rename", accomplishes the following:
 
 		DDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
 
-The python script handling the database insertion is called simons_databasgrej.py
+The python script handling the database insertion is called simons_databasgrej.py.
 
+Using sqlalchemy, an engine is created inorder to connect to the postgres database called 
+"weather". In this database the are four tables, each corresponding to a location. The columns
+in the tables correspond to the dataframe columns. The corresponding table names are stored
+in a list.
 
+Using the "insert_data_to_dbs", accomplishes the following:
+
+	- Each file in the folder "raw_to_harmonized" is looped through.
+
+	- First, the name of the location is extracted from the file name.
+
+	- Then the json is converted into a dataframe.
+	
+	- The previously extracted location name is added as a column.
+	This is unnecessary in the current database format, but is kept
+	in case another database structure should be used.
+
+	-It then loops through each table name, finding the one matching
+	the current json-file. Again, using the extracted location. 
+	
+	-The data is then inserted into the corresponding table.
