@@ -43,8 +43,8 @@ def plot_weather(table):
         plt.title('{} - Temperature, Humidity and Precipitation'.format(table))
         plt.savefig("harmonized_to_cleansed/{}file.png".format(table))
         
-
-plot_weather(tables)
+if __name__=='__main__':
+    plot_weather(tables)
 
 
 cur.close()

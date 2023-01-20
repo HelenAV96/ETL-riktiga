@@ -35,4 +35,5 @@ def insert_data_to_dbs(folder_name, table_names):
             else:
                 pass
 
-insert_data_to_dbs(folder_name,table_names)
+if __name__ == '__main__':
+    insert_data_to_dbs(folder_name,table_names)

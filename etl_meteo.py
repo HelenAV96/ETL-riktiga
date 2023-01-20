@@ -66,6 +66,8 @@ def rename():
         
     print("Data renamed to match the format YYYY-MM-DD_HH-MM-SS_(PLACE).json")
 
+if __name__ == "__main__":
+    request_new_weather_data(),transform(), rename()
 
 
 

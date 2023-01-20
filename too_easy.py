@@ -101,3 +101,7 @@ def plot_weather(table):
         plt.savefig("harmonized_to_cleansed/{}file.png".format(table))
         cur.close()
         conn.close()
+
+
+if __name__ == '__main__':
+    plot_weather()
