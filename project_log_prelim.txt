@@ -1,23 +1,4 @@
-18/1 0900
-Project start.
 
-Open Meteo is selected as the API to use. OM is selected due to the simplicity and open source nature, as well as it being free. Other sources were considered, but it was decided
-to keep away from the recommended API's as we feared that they would be flooded with requests by the other teams.
-
-
-1130
-
-<<<<<<< HEAD
-API get and save to json is working, currently hard coded with one location and hourly measurements for temp/wind/precip. The json is overwritten each time it is run.
-
-Next step is to harmonize and make a graph.
-
-1615
-
-End of day. Data is harmonized. Next step is to insert into sql.
-=======
-API get and save to json is working, currently hard coded with one location and hourly measurements
-for temp/wind/precip. The json is overwritten each time it is run.
 
 Functionality:
 
@@ -91,4 +72,25 @@ Using the "insert_data_to_dbs", accomplishes the following:
 	the current json-file. Again, using the extracted location. 
 	
 	-The data is then inserted into the corresponding table.
->>>>>>> ae5615e756d05e757deb4e75f94e5a7378be7542
+
+
+		GRPHGRHPRPHGRPHGRPHGRPHGRPHGRPHGRPHGRPHGRPHGRPH
+
+The python script handing the graph creation is called 	too_easy_simon.py.
+
+Using the function "plot_weather" accomplishes the following:
+
+	- A loop pulls database names from the list of databases.
+	- Using each database name, the desired data is pulled from the database using psycopg2
+	- The data is plotted using matplotlib.
+	- The destination folder is checked for duplicates and these are then deleted.
+	- The plotted graphs are saved as png in the destination folder.
+
+
+		DAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAGDAG
+
+The python script handling the DAG procedure is called my_dag.py.
+
+The above functions are pulled from the scripts, sequenced and executed.
+
+
