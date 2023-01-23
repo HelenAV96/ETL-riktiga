@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine
 
-engine = create_engine('postgresql+psycopg2://postgres:Ghznmqm7@localhost:5432/etl-meteo')
+engine = create_engine('postgresql+psycopg2://postgres:XXX@localhost:5432/etl-meteo')
 folder_name = "raw_to_harmonized"
 table_names = ["weather_umea", "weather_sodertalje", "weather_trosa", "weather_varmdo"]
 
@@ -30,5 +30,6 @@ def insert_data_to_dbs(folder_name, table_names):
                 print(f"Data inserted into {table_name} table")
             else:
                 pass
+        engine.dispose()
 
 insert_data_to_dbs(folder_name,table_names)

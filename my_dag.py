@@ -22,7 +22,8 @@ args = {
 dag = DAG(
     dag_id='my_dag',
     default_args=args,
-    schedule='@daily' # make this workflow happen every day
+    schedule='@daily',
+    catchup=False # make this workflow happen every day
 )
 
 with dag:

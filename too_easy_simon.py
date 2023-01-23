@@ -2,17 +2,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import psycopg2
+import os
 
 conn = psycopg2.connect(user="postgres",
-                        password="musikklass96",
-                        host="localhost",
+                        password="XXXx",
+                        host="192.168.0.103",
                         port="5432",
-                        database="weather")
+                        database="etl-meteo")
 cur = conn.cursor()
 tables = ['weather_umea', 'weather_trosa', 'weather_varmdo', 'weather_sodertalje']
 
+cwd = os.path.abspath(os.path.dirname(__file__))
 
-def plot_weather(table):
+
+
+def plot_weather():
     for table in tables:
         cur.execute("SELECT temperature_2m, relativehumidity_2m, precipitation, time FROM {}".format(table))
         results = cur.fetchall()
@@ -41,11 +45,17 @@ def plot_weather(table):
         ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M'))
         ax2.grid(True, axis='y', alpha=0.7)
         plt.title('{} - Temperature, Humidity and Precipitation'.format(table))
-        plt.savefig("harmonized_to_cleansed/{}file.png".format(table))
+        #remove file if it exists
+        if os.path.exists(cwd + "/harmonized_to_cleansed/{}file.png".format(table)):
+            os.remove(cwd + "/harmonized_to_cleansed/{}file.png".format(table))
+            
+        plt.savefig(cwd + "/harmonized_to_cleansed/{}file.png".format(table))
+    cur.close()
+    conn.close()
+
         
-if __name__=='__main__':
-    plot_weather(tables)
+if __name__ == '__main__':
+    plot_weather()
 
 
-cur.close()
-conn.close()
+

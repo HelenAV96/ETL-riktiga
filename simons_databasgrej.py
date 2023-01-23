@@ -1,22 +1,18 @@
 import json
 import os
 import pandas as pd
-import psycopg2
 from sqlalchemy import create_engine
 
-
-
-
-
-engine = create_engine('postgresql://postgres:musikklass96@localhost:5432/weather')
+engine = create_engine('postgresql+psycopg2://postgres:XXXXX@192.168.0.103:5432/etl-meteo')
 folder_name = "raw_to_harmonized"
 table_names = ["weather_umea", "weather_sodertalje", "weather_trosa", "weather_varmdo"]
 
-def insert_data_to_dbs(folder_name, table_names):
+
+def insert_data_to_dbs():
     # Get the current working directory
     cwd = os.path.abspath(os.path.dirname(__file__))
     # Join the current working directory and the folder name
-    folder_path = os.path.join(cwd, folder_name)
+    folder_path = os.path.join(cwd + "/" + folder_name)
     # Loop through the files in the folder
     for filename in os.listdir(folder_path):
         # Extract the location from the file name
@@ -32,8 +28,10 @@ def insert_data_to_dbs(folder_name, table_names):
         for table_name in table_names:
             if table_name.endswith(location):
                 df.to_sql(table_name, engine, if_exists='replace', index=False)
-            else:
-                pass
+                print(f"Data inserted into {table_name} table")
+            
+    engine.dispose()
+    
 
 if __name__ == '__main__':
-    insert_data_to_dbs(folder_name,table_names)
+    insert_data_to_dbs()
